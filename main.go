@@ -7,12 +7,12 @@ import (
 )
 
 func main() {
-	fmt.Println("Array in go language")
-	var arr [5]string
-	arr[0] = "Hello"
-	arr[1] = "World"
-	arr[2] = "This"
-	arr[3] = "is"
-	arr[4] = "Go"
-	fmt.Println(arr)
+	fmt.Println("Slices in go")
+	var fruits = []string{"apple", "orange", "mango", "banana", "grapes"}
+	fmt.Println(fruits)
+	fruits=append(fruits,"kiwi")
+	fmt.Println(fruits)
+	fruits=append(fruits[1:3])
+	fmt.Println(fruits)
+
 }
