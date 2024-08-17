@@ -7,15 +7,21 @@ import (
 )
 
 func main() {
-	fmt.Println("Slices in go")
-	var fruits = []string{"apple", "orange", "mango", "banana", "grapes"}
-	fmt.Println(fruits)
-	fruits=append(fruits,"kiwi")
-	fmt.Println(fruits)
-	fruits=append(fruits[1:3])
-	fmt.Println(fruits)
-    // removing values from slices
-	var index int = 2
-	fruits = append(fruits[:index], fruits[index+1:]...)
-	fmt.Println(fruits)
+    fmt.Println("Maps in Golang")
+	 languages := make(map[string]string)
+	languages["JS"] = "Javascript"
+	languages["PY"] = "Python"
+	languages["RB"] = "Ruby"
+	languages["GO"] = "Golang"
+
+	fmt.Println("Languages: ", languages)
+
+	delete(languages, "RB")
+	fmt.Println("Languages: ", languages["PY"])
+
+	// Iterating over a map
+	for key, value := range languages {
+		fmt.Printf("%s: %s\n", key, value)
+	}
+	
 }
