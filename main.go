@@ -4,12 +4,15 @@ import (
 	
 	"fmt"
 	
-	"time"
 )
 
 func main() {
-	fmt.Println("Learn Go - 1.1")
-	date := time.Now()
-	fmt.Println("Today is", date)
-	fmt.Println(date.Format("02-01-2006 15:04:05 Monday"))
+	fmt.Println("Array in go language")
+	var arr [5]string
+	arr[0] = "Hello"
+	arr[1] = "World"
+	arr[2] = "This"
+	arr[3] = "is"
+	arr[4] = "Go"
+	fmt.Println(arr)
 }
