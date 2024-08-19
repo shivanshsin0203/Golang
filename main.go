@@ -7,14 +7,23 @@ import (
 )
 
 func main() {
-   fmt.Println("Stgructs in go lang")
-     shivansh :=User{"Shivansh","singhshivansh12may@gmail.com",21,true}
-	fmt.Println(shivansh)
-	
-}
-type User struct {
-	Name string
-	Email string
-	Age int
-	Status bool
+   fmt.Println("If and else in go")
+
+	count:= 10
+	if count < 10 {
+		fmt.Println("The count is less than 10")
+	} else if count == 10 {
+		fmt.Println("The count is equal to 10")
+	} else {
+		fmt.Println("The count is greater than 10")
+	}
+
+	// intialize and check the value of a variable
+	if num := 10; num < 10 {
+		fmt.Println("The number is less than 10")
+	} else if num == 10 {
+		fmt.Println("The number is equal to 10")
+	} else {
+		fmt.Println("The number is greater than 10")
+	}
 }
