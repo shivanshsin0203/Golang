@@ -6,31 +6,23 @@ import (
 )
 
 func main() {
-     fmt.Println("Lopps in golang")
-	 days := []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
-
-	//  for i := 0; i < len(days); i++ {
-	// 	 fmt.Println(days[i])
-	//  }
-	//  for i:= range days {
-	// 	 fmt.Println(days[i])
-	//  }
-	 for index, value := range days {
-		 fmt.Printf("Index: %v, Value: %v\n", index, value)
+     fmt.Println("Functions in Go")
+     preset()
+     fmt.Println(adder(2,3))
+	 proAddresult,proAddStatus := proadder(1,2,3,4,5)
+	 fmt.Println(proAddresult,proAddStatus)
+}
+func proadder(values ... int) (int,string){
+	 result :=0
+	 for _,v := range values{
+		 result += v
 	 }
-	  value :=1
+	 return result,"Success"
+}
 
-	 for value < 10 {
-        if value ==3{
-			goto lco
-		}
-		if(value == 5){
-			value++
-			continue
-		}
-		 fmt.Println(value)
-		 value++
-	 }
-	 lco:
-	     fmt.Println("Jumping to LCO")
+func adder(a int, b int) int {
+	return a + b
+}
+func preset(){
+	fmt.Println("This is a preset function")
 }
