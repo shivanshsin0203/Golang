@@ -6,23 +6,19 @@ import (
 )
 
 func main() {
-     fmt.Println("Functions in Go")
-     preset()
-     fmt.Println(adder(2,3))
-	 proAddresult,proAddStatus := proadder(1,2,3,4,5)
-	 fmt.Println(proAddresult,proAddStatus)
-}
-func proadder(values ... int) (int,string){
-	 result :=0
-	 for _,v := range values{
-		 result += v
-	 }
-	 return result,"Success"
+	fmt.Println("Meathods in Go")
+     shivam := User{"Shivam","Kumar","awd@gmail.com",21,true}
+	 fmt.Println("User is",shivam)
+	 shivam.GetStatus()
 }
 
-func adder(a int, b int) int {
-	return a + b
+type User struct{
+	FirstName string
+	LastName string
+	Email string
+	Age int
+	isActive bool
 }
-func preset(){
-	fmt.Println("This is a preset function")
+func (u User) GetStatus() {
+	fmt.Println("Is user active",u.isActive)
 }
