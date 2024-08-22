@@ -3,29 +3,20 @@ package main
 import (
 	"fmt"
 	"io"
-	
-	"os"
-)
+	"net/http"
 
+)
+const url = "https://nith.ac.in"
 func main() {
-	fmt.Println("Files in golang")
-	content := "Hello, World!"
-	file,err := os.Create("./test.txt")
+	fmt.Println("Web request in Go");
+    responce,err :=http.Get(url)
 	if err != nil {
 		panic(err)
 	}
-	length,err := io.WriteString(file,content)
+    defer responce.Body.Close()
+	data,err := io.ReadAll(responce.Body)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Length: %d",length)
-	readFile("./test.txt")
-	defer file.Close()
-}
-func readFile (fileName string) {
-	data,err := os.ReadFile(fileName)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("The data read from the file is: ",string(data))
+	fmt.Println(string(data))
 }
