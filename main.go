@@ -4,30 +4,24 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
+	"strings"
 )
-const url = "https://nith.ac.in"
+
 func main() {
-	fmt.Println("Web request in Go");
-    responce,err :=http.Get(url)
+	fmt.Println("Post request in go")
+}
+func HandlePostReq(){
+	fmt.Println("Post request in go")
+	const url = "http://localhost:8080"
+	requestBody :=strings.NewReader(`{"title":"New post","content":"This is a new post"}`)
+	res,err := http.Post(url,"application/json",requestBody)
 	if err != nil {
 		panic(err)
 	}
-    defer responce.Body.Close()
-	data,err := io.ReadAll(responce.Body)
+	defer res.Body.Close()
+	content,err := io.ReadAll(res.Body)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(string(data))
-	content := string(data)
-	file, err := os.Create("nith.html")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-	length,err := io.WriteString(file,content)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("File created with %v characters",length)
+	fmt.Println(string(content))
 }
