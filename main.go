@@ -15,13 +15,14 @@ func HandlePostReq(){
 	const url = "http://localhost:8080"
 	requestBody :=strings.NewReader(`{"title":"New post","content":"This is a new post"}`)
 	res,err := http.Post(url,"application/json",requestBody)
-	if err != nil {
-		panic(err)
-	}
+	 handleError(err)
 	defer res.Body.Close()
 	content,err := io.ReadAll(res.Body)
-	if err != nil {
-		panic(err)
-	}
+	handleError(err)
 	fmt.Println(string(content))
+}
+func handleError(err error){
+	if err != nil{
+		fmt.Println("Error:",err)
+	}
 }
