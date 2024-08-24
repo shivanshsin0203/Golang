@@ -1,28 +1,30 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
-	"strings"
 )
-
 func main() {
-	fmt.Println("Post request in go")
+	fmt.Println("Generate json in go")
+    handleJson()
 }
-func HandlePostReq(){
-	fmt.Println("Post request in go")
-	const url = "http://localhost:8080"
-	requestBody :=strings.NewReader(`{"title":"New post","content":"This is a new post"}`)
-	res,err := http.Post(url,"application/json",requestBody)
-	 handleError(err)
-	defer res.Body.Close()
-	content,err := io.ReadAll(res.Body)
-	handleError(err)
-	fmt.Println(string(content))
+type course struct{
+	Name string
+	Price int
+	Platform string
+	Password string
+	Tags []string
 }
-func handleError(err error){
-	if err != nil{
-		fmt.Println("Error:",err)
+func handleJson(){
+	courses := []course{
+		{ "Go",  0,  "Youtube",  "1234",  []string{"Go", "Programming"}},
+		{ "Python", 0, "Youtube",  "1234",  []string{"Python", "Programming"}},
+		{ "Java",  0,  "Youtube",  "1234",  []string{"Java", "Programming"}},
+		{ "C++",  0,  "Youtube",  "1234", nil },
 	}
+	finalJson,err := json.MarshalIndent(courses, "", " ")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%s\n", finalJson)
 }
