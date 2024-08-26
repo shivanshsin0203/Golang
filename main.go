@@ -19,7 +19,6 @@ func handleJson(){
 	courses := []course{
 		{ "Go",  0,  "Youtube",  "1234",  []string{"Go", "Programming"}},
 		{ "Python", 0, "Youtube",  "1234",  []string{"Python", "Programming"}},
-		{ "Java",  0,  "Youtube",  "1234",  []string{"Java", "Programming"}},
 		{ "C++",  0,  "Youtube",  "1234", nil },
 	}
 	finalJson,err := json.MarshalIndent(courses, "", " ")
