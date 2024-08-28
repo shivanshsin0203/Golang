@@ -4,40 +4,17 @@ import (
 	"fmt"
 )
 
-// Define an interface
-type Speaker interface {
-	Speak() string
+type Course struct{
+	CourseId string `json:"courseId"`
+	CourseName string `json:"courseName"`
+	CoursePrice int `json:"coursePrice"`
+	Author *Author `json:"author"`
 }
-
-// Define a type Dog that implements the Speaker interface
-type Dog struct {
-	Name string
+type Author struct{
+	FullName string `json:"fullName"`
+	WebSite string `json:"webSite"`
 }
-
-func (d Dog) Speak() string {
-	return "Woof! My name is " + d.Name
-}
-
-// Define another type Cat that implements the Speaker interface
-type Cat struct {
-	Name string
-}
-
-func (c Cat) Speak() string {
-	return "Meow! My name is " + c.Name
-}
-
-// Define a function that takes a Speaker interface as a parameter
-func SaySomething(s Speaker) {
-	fmt.Println(s.Speak())
-}
-
-func main() {
-	// Create instances of Dog and Cat
-	dog := Dog{Name: "Buddy"}
-	cat := Cat{Name: "Whiskers"}
-
-	// Both Dog and Cat satisfy the Speaker interface, so they can be passed to SaySomething
-	SaySomething(dog)
-	SaySomething(cat)
+var courses []Course
+func main(){
+	fmt.Println("Making api in go")
 }
