@@ -3,10 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
-	
 
 	"github.com/gorilla/mux"
 )
@@ -28,6 +28,18 @@ func (c *Course) isEmpty() bool{
 }
 func main(){
 	fmt.Println("Making api in go")
+	r := mux.NewRouter()
+
+	courses = append(courses, Course{CourseId: "1", CourseName: "Java", CoursePrice: 100, Author: &Author{FullName: "John Doe", WebSite: "www.johndoe.com"}})
+	courses = append(courses, Course{CourseId: "2", CourseName: "Python", CoursePrice: 200, Author: &Author{FullName: "Jane Doe", WebSite: "www.janedoe.com"}})
+	courses = append(courses, Course{CourseId: "3", CourseName: "Go", CoursePrice: 300, Author: &Author{FullName: "Jane Doe", WebSite: "www.janedoe.com"}})
+	r.HandleFunc("/", serveHome).Methods("GET")
+	r.HandleFunc("/courses", getAllCourses).Methods("GET")
+	r.HandleFunc("/courses/{id}", getOneCourse).Methods("GET")
+	r.HandleFunc("/courses", createCourse).Methods("POST")
+	r.HandleFunc("/courses/{id}", updateCourse).Methods("PUT")
+	r.HandleFunc("/courses/{id}", deleteCourse).Methods("DELETE")
+	log.Fatal(http.ListenAndServe(":3000", r))
 }
 // Controller function
 func serveHome(w http.ResponseWriter, r *http.Request){
