@@ -6,6 +6,8 @@ import (
 	"sync"
 )
 var wg sync.WaitGroup
+var mt sync.Mutex
+var signals = []string{"test"}
 func main() {
 	fmt.Println("Go routines for corrcurency")
 	webList := []string{
@@ -20,6 +22,7 @@ func main() {
 		go getStatus(web)
 	}
 	wg.Wait()
+	fmt.Println(signals)
 }
 func getStatus(s string){
 	defer wg.Done()
@@ -27,6 +30,9 @@ func getStatus(s string){
 	if err != nil{
 		fmt.Println("Error")
 	}else{
+		mt.Lock()
+		signals = append(signals, s)
+		mt.Unlock()
         fmt.Printf("%dStatus code is %s\n",res.StatusCode, s)
 	}
 }
